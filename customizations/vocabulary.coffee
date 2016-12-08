@@ -66,3 +66,10 @@ Settings.insert =
     "symbol": "sym"
     "objective-c": "objc"
     "ascending": "asc"
+
+Settings.vocabulary =
+  sequences:
+    'cursor:down':
+      [ 'common:enter' ]
+    'cursor:new-line-below':
+      [ 'common:enter' ]
