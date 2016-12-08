@@ -26,7 +26,13 @@ Package.command 'find-bookmark',
   action: ->
     @key "f2"
 
-atom = Packages.get 'atom'
+Package.command 'close-all-tabs',
+  spoken: "totchway"
+  enabled: true
+  scope: 'atom-editor-focused'
+  action: ->
+    @openMenuBarPath(['File', 'Close All Tabs'])
 
+atom = Packages.get 'atom'
 atom.after 'atom:search-selection', (input) ->
   @do 'common:find-next'
