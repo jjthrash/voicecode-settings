@@ -14,6 +14,16 @@ Package.command 'git-gitx',
   action: ->
     @string "gitx"
 
+Package.command 'git-commit',
+  spoken: 'jet commit'
+  enabled: true
+  autoSpacing: 'normal never'
+  description: "My version"
+  multiPhraseAutoSpacing: 'normal never'
+  action: ->
+    @string "git commit -m \"\""
+    @left()
+
 # git  = Packages.get 'git'
 # git.after 'git:git-commit',
 
