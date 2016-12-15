@@ -66,6 +66,9 @@ Settings.insert =
     "symbol": "sym"
     "objective-c": "objc"
     "ascending": "asc"
+    "subtract": "sub"
+    "multiple": "mult"
+    "multiply": "mult"
 
 Settings.vocabulary =
   sequences:
