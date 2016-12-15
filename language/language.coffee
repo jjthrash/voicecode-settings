@@ -2,7 +2,8 @@ Package.command 'pick-last-word',
   spoken: 'tickle'
   grammarType: "textCapture"
   enabled: true
-  autoSpacing: "soft never"
+  autoSpacing: "normal normal"
+  multiPhraseAutoSpacing: "normal normal"
   action: (input) ->
     if input
       @string input[input.length-1]
@@ -11,7 +12,8 @@ Package.command 'pick-first-word',
   spoken: 'pickle'
   grammarType: "textCapture"
   enabled: true
-  autoSpacing: "soft never"
+  autoSpacing: "normal normal"
+  multiPhraseAutoSpacing: "normal normal"
   action: (input) ->
     if input
       @string input[0]
