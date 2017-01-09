@@ -30,6 +30,7 @@ Settings.vocabulary =
     "j query": "jquery"
     "okay": "ok"
     "e-mail": "email"
+    "e-mails": "emails"
     "krohn task": "cron task"
     "had object": "add object"
     "ad object": "add object"
@@ -48,6 +49,7 @@ Settings.vocabulary =
     "super view": "superview"
     "wrangell": "wrangle"
     "ro": "row"
+    "sarid": "sarreid"
 
 Settings.insert =
   abbreviations:
@@ -69,10 +71,13 @@ Settings.insert =
     "subtract": "sub"
     "multiple": "mult"
     "multiply": "mult"
+    "asynchronous": "async"
 
 Settings.vocabulary =
   sequences:
     'cursor:down':
       [ 'common:enter' ]
     'cursor:new-line-below':
+      [ 'common:enter' ]
+    'yang':
       [ 'common:enter' ]
