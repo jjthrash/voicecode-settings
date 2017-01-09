@@ -5,7 +5,7 @@ Package.command 'initialize-object',
   scope: 'atom-editor-focused'
   action: (input) ->
     # this drives the following objective-c snippet: $1 *$2 = [[$1 alloc] init$3];
-    @string 'init'
+    @string 'alloc'
     @do 'common:tab'
     @string Transforms.stud(input)
     @do 'common:tab'
