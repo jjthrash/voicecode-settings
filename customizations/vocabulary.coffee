@@ -50,6 +50,7 @@ Settings.vocabulary =
     "wrangell": "wrangle"
     "ro": "row"
     "sarid": "sarreid"
+    "zug": "s"
 
 Settings.insert =
   abbreviations:
@@ -81,3 +82,7 @@ Settings.vocabulary =
       [ 'common:enter' ]
     'yang':
       [ 'common:enter' ]
+    'jimmy':
+      [ 'thrasher' ]
+    'colon':
+      [ 'womp' ]
