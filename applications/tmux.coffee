@@ -14,3 +14,11 @@ Package.command 'tmux-switch',
   action: ->
     @key prefixCharacter, ["control"]
     @key "s"
+
+Package.command 'tmux-pane',
+  spoken: 'mux pane'
+  enabled: true
+  scope: 'iterm-active'
+  action: ->
+    @key prefixCharacter, ["control"]
+    @key "q"
