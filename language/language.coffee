@@ -28,3 +28,14 @@ Package.command 'email-greeting',
       @string "Hey " + Transforms.titleSentance(input) + ","
     else
       @string "Hey, "
+
+Package.command 'first-character-from-each-word-capitalized',
+  spoken: 'yellsnitch'
+  grammarType: "textCapture"
+  enabled: true
+  action: (input) ->
+    if input
+      @string Transforms.upperSlam(Transforms.firstLetters(input))
+    else
+      @transformSelectedText('firstLetters')
+      @transformSelectedText('upperSlam')
