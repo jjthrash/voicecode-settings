@@ -14,6 +14,7 @@ Settings.vocabulary =
     "ansible",
     "ooga",
     "subview",
+    "kakoune",
   ]
 
 Settings.vocabulary =
