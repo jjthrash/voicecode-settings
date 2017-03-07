@@ -52,6 +52,8 @@ Settings.vocabulary =
     "ro": "row"
     "sarid": "sarreid"
     "zug": "s"
+    "jay sawn": "json"
+    "wi-fi": "wifi"
 
 Settings.insert =
   abbreviations:
@@ -74,6 +76,7 @@ Settings.insert =
     "multiple": "mult"
     "multiply": "mult"
     "asynchronous": "async"
+    "destination": "dest"
 
 Settings.vocabulary =
   sequences:
@@ -87,3 +90,7 @@ Settings.vocabulary =
       [ 'thrasher' ]
     'colon':
       [ 'womp' ]
+    'mocked':
+      [ 'up' ]
+    'jay':
+      [ 'sawn' ]
