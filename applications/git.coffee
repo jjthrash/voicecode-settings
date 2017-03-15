@@ -5,6 +5,7 @@ Settings.git =
     'amend': 'commit --amend'
     'patchett': 'add --patch'
     'check out': 'checkout'
+    'fix up': 'commit --amend -CHEAD'
 
 Package.command 'git-gitx',
   spoken: 'jet trex'
