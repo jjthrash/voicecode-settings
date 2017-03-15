@@ -35,6 +35,16 @@ pack.implement
   'editor:move-to-line-number': (input) ->
     if input?
       @normalKakouneCommand input + "g"
+  'editor:move-to-line-number-and-way-left': (input) ->
+    if input?
+      number = parseInt(input.toString())
+      @normalKakouneCommand "" + number + "g"
+      @normalKakouneCommand "gh"
+  'editor:move-to-line-number-and-way-right': (input) ->
+    if input?
+      number = parseInt(input.toString())
+      @normalKakouneCommand "" + number + "g"
+      @normalKakouneCommand "gl"
   'window:new-tab': ->
     @normalKakouneCommand ":fe"
     @key "enter"
@@ -55,6 +65,10 @@ pack.implement
     @normalKakouneCommand "gl"
   'cursor:way-left': ->
     @normalKakouneCommand "gh"
+  'selection:way-right': ->
+    @string "Gl"
+  'selection:way-left': ->
+    @string 'Gh'
   'atom:pane-control': ({paneAction, whichPane}) ->
     switch paneAction
       when 'fog'
@@ -67,6 +81,48 @@ pack.implement
           when 'up', 'down'
             @normalKakouneCommand ":tmux-new-vertical"
         @key "enter"
+  'selection:all': ->
+    @string "%"
+  'common:indent-left': ->
+    @normalKakouneCommand "<"
+  'common:indent-right': ->
+    @normalKakouneCommand ">"
+  'object:previous': ->
+    @normalKakouneCommand "ga"
+  'editor:select-line-number-range': (input) ->
+    if input?
+      number = input.toString()
+      length = Math.floor(number.length / 2)
+      first = number.substr(0, length)
+      last = number.substr(length, length + 1)
+      first = parseInt(first)
+      last = parseInt(last)
+      if last < first
+        temp = last
+        last = first
+        first = temp
+      @string "" + first + "g"
+      @string "" + last + "G"
+      @key "x", ["option"]
+  'delete:lines': ({first, last} = {}) ->
+    if last?
+      @string "" + first + "g" + last + "G"
+    else if first?
+      @string "" + first + "g"
+    @key "x", ["option"]
+    @string "d"
+  'editor:insert-under-line-number': (input) ->
+    number = parseInt(input.toString())
+    if !Number.isNaN(number)
+      @string "" + number + "go"
+  'cursor:new-line-above': ->
+    @normalKakouneCommand "O"
+  'cursor:new-line-below': ->
+    @normalKakouneCommand "o"
+  'os:undo': ->
+    @normalKakouneCommand "u"
+  'os:redo': ->
+    @normalKakouneCommand "U"
 
 pack.commands
   scope: 'iterm-active'
@@ -84,4 +140,25 @@ pack.commands
     enabled: true
     action: ->
       @string "vv"
+  'kakoune-clipboard-cut':
+    spoken: 'kasnatch'
+    description: 'Cut to clipboard'
+    enabled: true
+    action: ->
+      @string "|pbcopy"
+      @key "enter"
+  'kakoune-clipboard-copy':
+    spoken: 'kastoosh'
+    description: 'Copy to clipboard'
+    enabled: true
+    action: ->
+      @key "|", ["option"]
+      @string "pbcopy"
+      @key "enter"
+  'kakoune-clipboard-paste':
+    spoken: 'kaspark'
+    enabled: true
+    action: ->
+      @string "!pbpaste"
+      @key "enter"
 
