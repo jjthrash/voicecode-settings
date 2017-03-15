@@ -45,9 +45,8 @@ pack.implement
     @string ":q"
     @key "enter"
   'editor:toggle-comments': ->
-    @key "s", ["option"]
-    @string "i//"
-    @key "escape"
+    @string ":comment"
+    @key "enter"
   'cursor:way-down': ->
     @normalKakouneCommand "gj"
   'cursor:way-up': ->
