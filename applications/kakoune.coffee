@@ -12,8 +12,13 @@ pack = Packages.register
 #
 ##Scope.active('my-custom-scope') => Boolean
 #
-##pack.api
-#
+pack.api
+  normalKakouneCommand:
+    signature: 'normalKakouneCommand : (command: String) => void'
+    action: (command) ->
+      @key "q", ["control"]
+      @string command
+
 #pack.implement
 #  scope: 'kakoune'
 #,
@@ -28,13 +33,13 @@ pack.implement
   scope: 'iterm-active'
 ,
   'editor:move-to-line-number': (input) ->
-    log 'kakoune', 'attempt ' + input
-    @string input + "g"
+    if input?
+      @normalKakouneCommand input + "g"
   'window:new-tab': ->
-    @string ":fe"
+    @normalKakouneCommand ":fe"
     @key "enter"
   'common:save': ->
-    @string ":w"
+    @normalKakouneCommand ":w"
     @key "enter"
   'window:close': ->
     @string ":q"
@@ -44,13 +49,13 @@ pack.implement
     @string "i//"
     @key "escape"
   'cursor:way-down': ->
-    @string "gj"
+    @normalKakouneCommand "gj"
   'cursor:way-up': ->
-    @string "gk"
+    @normalKakouneCommand "gk"
   'cursor:way-right': ->
-    @string "gl"
+    @normalKakouneCommand "gl"
   'cursor:way-left': ->
-    @string "gh"
+    @normalKakouneCommand "gh"
   'atom:pane-control': ({paneAction, whichPane}) ->
     switch paneAction
       when 'fog'
@@ -59,9 +64,9 @@ pack.implement
       when 'split'
         switch whichPane
           when 'left', 'right'
-            @string ":tmux-new-horizontal"
+            @normalKakouneCommand ":tmux-new-horizontal"
           when 'up', 'down'
-            @string ":tmux-new-vertical"
+            @normalKakouneCommand ":tmux-new-vertical"
         @key "enter"
 
 pack.commands
