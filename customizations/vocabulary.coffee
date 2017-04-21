@@ -15,6 +15,8 @@ Settings.vocabulary =
     "ooga",
     "subview",
     "kakoune",
+    "thingiverse",
+    "tmux",
   ]
 
 Settings.vocabulary =
@@ -54,6 +56,8 @@ Settings.vocabulary =
     "zug": "s"
     "jay sawn": "json"
     "wi-fi": "wifi"
+    "ali": "olly"
+    "read-only": "read only"
 
 Settings.insert =
   abbreviations:
@@ -94,3 +98,7 @@ Settings.vocabulary =
       [ 'up' ]
     'jay':
       [ 'sawn' ]
+    'pounder':
+      [ 'import' ]
+    'import':
+      [ 'events' ]
