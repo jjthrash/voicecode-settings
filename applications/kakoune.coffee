@@ -13,10 +13,14 @@ pack = Packages.register
 ##Scope.active('my-custom-scope') => Boolean
 #
 pack.api
+  prefixNormalKakouneCommand:
+    signature: 'prefixNormalKakouneCommand : () => void'
+    action: ->
+      @key "q", ["control"]
   normalKakouneCommand:
     signature: 'normalKakouneCommand : (command: String) => void'
     action: (command) ->
-      @key "q", ["control"]
+      @prefixNormalKakouneCommand()
       @string command
 
 #pack.implement
@@ -123,6 +127,16 @@ pack.implement
     @normalKakouneCommand "u"
   'os:redo': ->
     @normalKakouneCommand "U"
+  'common:find': ->
+    @normalKakouneCommand "/"
+  'atom:search-selection': ->
+    @string "*n"
+  'text-manipulation:nudge-text-left': ->
+    @normalKakouneCommand "b"
+    @key "left"
+    @normalKakouneCommand "d"
+  'object:duplicate': ->
+    @normalKakouneCommand "yp"
 
 pack.commands
   scope: 'iterm-active'
@@ -139,7 +153,7 @@ pack.commands
     description: 'Center the line the current cursor is on in the middle of the screen'
     enabled: true
     action: ->
-      @string "vv"
+      @normalKakouneCommand "vv"
   'kakoune-clipboard-cut':
     spoken: 'kasnatch'
     description: 'Cut to clipboard'
