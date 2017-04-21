@@ -5,7 +5,10 @@ Settings.git =
     'amend': 'commit --amend'
     'patchett': 'add --patch'
     'check out': 'checkout'
+    'fixup': 'commit --amend -CHEAD'
     'fix up': 'commit --amend -CHEAD'
+    'current branch': 'current-branch'
+    'gopreev: 'checkout -'
 
 Package.command 'git-gitx',
   spoken: 'jet trex'
