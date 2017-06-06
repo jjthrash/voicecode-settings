@@ -17,6 +17,7 @@ Settings.vocabulary =
     "kakoune",
     "thingiverse",
     "tmux",
+    "accessor",
   ]
 
 Settings.vocabulary =
@@ -58,6 +59,10 @@ Settings.vocabulary =
     "wi-fi": "wifi"
     "ali": "olly"
     "read-only": "read only"
+    "I pad": "ipad"
+    "tesuque": "to s"
+    "pre-rendering": "prerendering"
+    "segway": "segue"
 
 Settings.insert =
   abbreviations:
@@ -81,6 +86,10 @@ Settings.insert =
     "multiply": "mult"
     "asynchronous": "async"
     "destination": "dest"
+    "move": "mov"
+    "jump": "jmp"
+    "miniature": "mini"
+
 
 Settings.vocabulary =
   sequences:
@@ -102,3 +111,5 @@ Settings.vocabulary =
       [ 'import' ]
     'import':
       [ 'events' ]
+    'user:tmux:tmux-prefix':
+      ['cursor:up']
