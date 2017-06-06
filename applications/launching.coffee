@@ -11,12 +11,13 @@ Package.command 'launch-xcode',
     @key 'x', ['command', 'option', 'shift']
 
 apps =
-  foxy: "Firefox"
+  foxy: "Google Chrome"
   turmit: "iTerm"
   skippy: "Skype"
   blimey: "LimeChat"
   safari: "Safari"
   hibari: "Hibari"
+  chromium: "Google Chrome"
 
 _.each apps, (value, key) ->
   Package.command "launch #{value.toLowerCase()}",
