@@ -48,7 +48,9 @@ pack.implement
     if input?
       number = parseInt(input.toString())
       @normalKakouneCommand "" + number + "g"
-      @normalKakouneCommand "gl"
+      @normalKakouneCommand "/"
+      @string "\\n"
+      @key "enter"
   'window:new-tab': ->
     @normalKakouneCommand ":fe"
     @key "enter"
@@ -66,13 +68,33 @@ pack.implement
   'cursor:way-up': ->
     @normalKakouneCommand "gk"
   'cursor:way-right': ->
-    @normalKakouneCommand "gl"
+    @normalKakouneCommand "/"
+    @string "\\n"
+    @key "enter"
   'cursor:way-left': ->
     @normalKakouneCommand "gh"
   'selection:way-right': ->
     @string "Gl"
   'selection:way-left': ->
     @string 'Gh'
+  'selection:previous-word-by-surrounding-characters': (input) ->
+    term = input?.value
+    if term?.length
+      first = term[0]
+      last = term[term.length - 1]
+      @prefixNormalKakouneCommand()
+      @key "/", ["option"]
+      @string first + "\\w+" + last
+      @key "enter"
+  'selection:next-word-by-surrounding-characters': (input) ->
+    term = input?.value
+    if term?.length
+      first = term[0]
+      last = term[term.length - 1]
+      @normalKakouneCommand "/"
+      @string first + "\\w+" + last
+      @key "enter"
+
   'atom:pane-control': ({paneAction, whichPane}) ->
     switch paneAction
       when 'fog'
@@ -86,7 +108,23 @@ pack.implement
             @normalKakouneCommand ":tmux-new-vertical"
         @key "enter"
   'selection:all': ->
-    @string "%"
+    @normalKakouneCommand "%"
+  'selection:word-left': ->
+    @normalKakouneCommand "B"
+  'selection:word-right': ->
+    @normalKakouneCommand "E"
+  'selection:right': ->
+    @normalKakouneCommand "L"
+  'selection:left': ->
+    @normalKakouneCommand "H"
+  'selection:down': ->
+    @normalKakouneCommand "J"
+  'selection:up': ->
+    @normalKakouneCommand "K"
+  'selection:way-down': ->
+    @normalKakouneCommand "Gj"
+  'selection:way-up': ->
+    @normalKakouneCommand "Gk"
   'common:indent-left': ->
     @normalKakouneCommand "<"
   'common:indent-right': ->
@@ -110,15 +148,21 @@ pack.implement
       @key "x", ["option"]
   'delete:lines': ({first, last} = {}) ->
     if last?
-      @string "" + first + "g" + last + "G"
+      @normalKakouneCommand "" + first + "g"
+      @normalKakouneCommand "" + last + "G"
     else if first?
-      @string "" + first + "g"
+      @normalKakouneCommand "" + first + "g"
+    @prefixNormalKakouneCommand()
     @key "x", ["option"]
-    @string "d"
+    @normalKakouneCommand "d"
+  'delete:word': ->
+    @normalKakouneCommand "B"
+    @normalKakouneCommand "d"
   'editor:insert-under-line-number': (input) ->
     number = parseInt(input.toString())
     if !Number.isNaN(number)
-      @string "" + number + "go"
+      @normalKakouneCommand "" + number + "g"
+      @normalKakouneCommand "o"
   'cursor:new-line-above': ->
     @normalKakouneCommand "O"
   'cursor:new-line-below': ->
@@ -127,16 +171,79 @@ pack.implement
     @normalKakouneCommand "u"
   'os:redo': ->
     @normalKakouneCommand "U"
+  'cursor:way-right-then-space': ->
+    @normalKakouneCommand "A"
+    @string " "
+    @key "escape"
+    @key "right"
+#  'selection:previous-occurrence': (input) ->
+#    if input?.length
+#      @prefixNormalKakouneCommand()
+#      @key "escape"
+#      @string "/" + input
+#      @key "enter"
   'common:find': ->
     @normalKakouneCommand "/"
+  'common:find-next': ->
+    @normalKakouneCommand "n"
+  'common:find-previous': ->
+    @prefixNormalKakouneCommand()
+    @key "n", ["option"]
   'atom:search-selection': ->
     @string "*n"
+  'common:find': ->
+    @normalKakouneCommand "/"
+  'selection:next-occurrence': (input) ->
+    term = input?.value
+    if term?.length
+      @normalKakouneCommand "/"
+      @string term
+      @key "enter"
+  'selection:previous-occurrence': (input) ->
+    term = input?.value
+    if term?.length
+      @prefixNormalKakouneCommand()
+      @key "/", ["option"]
+      @string term
+      @key "enter"
+  'selection:extend-to-next-occurrence': (input) ->
+    term = input?.value
+    if term?.length
+      @normalKakouneCommand "?"
+      @string term
+      @key "enter"
+  'selection:extend-to-previous-occurrence': (input) ->
+    term = input?.value
+    if term?.length
+      @prefixNormalKakouneCommand()
+      @key "/", ["option", "shift"]
+      @string term
+      @key "enter"
+  'selection:next-word': ->
+    @normalKakouneCommand "/"
+    @string "\\w+"
+    @key "enter"
+  'selection:previous-word': ->
+    @prefixNormalKakouneCommand()
+    @key "/", ["option"]
+    @string "\\w+"
+    @key "enter"
   'text-manipulation:nudge-text-left': ->
     @normalKakouneCommand "b"
     @key "left"
     @normalKakouneCommand "d"
   'object:duplicate': ->
     @normalKakouneCommand "yp"
+#  'format:upper-camel': (input) ->
+#    if input?
+#      @string Transforms.stud(input)
+#    else
+#      @normalKakouneCommand "|pbcopy"
+#      @key "enter"
+#      text = @getClipboard()
+#      @normalKakouneCommand "i"
+#      @string Transforms.stud(text)
+#      @key "escape"
 
 pack.commands
   scope: 'iterm-active'
@@ -175,4 +282,9 @@ pack.commands
     action: ->
       @string "!pbpaste"
       @key "enter"
+#  'kakoune-reverse-find':
+#    spoken: 'remarko'
+#    enabled: true
+#    action: ->
+#      @normalKakouneCommand ""
 
