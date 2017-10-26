@@ -9,7 +9,11 @@ Settings.git =
     'fixup': 'commit --fixup'
     'fix up': 'commit --fixup'
     'current branch': 'current-branch'
+    'recent branch': 'recent-branch'
+    'recent branch remote': 'recent-branch -r'
     'gopreev': 'checkout -'
+    'store current branch': 'current-branch | pbcopy'
+    'status log': 'sg'
 
 Package.command 'git-gitx',
   spoken: 'jet trex'
@@ -28,6 +32,15 @@ Package.command 'git-commit',
   action: ->
     @string "git commit -m \"\""
     @left()
+
+Package.commands
+  'get-recent-branch':
+    spoken: 'jet get recent branch'
+    description: 'print out the nth most recent branch'
+    enabled: true
+    grammarType: "textCapture"
+    action: (input) ->
+      @string "git recent-branch | awk 'NR == " + input + " { print $NF }'"
 
 # git  = Packages.get 'git'
 # git.after 'git:git-commit',
