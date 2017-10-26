@@ -279,6 +279,23 @@ pack.commands
       @key "|", ["option"]
       @string "pbcopy"
       @key "enter"
+  'kakoune-select-all-clipboard-cut':
+    spoken: 'alkasnatch'
+    description: 'Cut to clipboard'
+    enabled: true
+    action: ->
+      @normalKakouneCommand "%"
+      @normalKakouneCommand "|pbcopy"
+      @key "enter"
+  'kakoune-select-all-clipboard-copy':
+    spoken: 'alkastoosh'
+    description: 'Copy to clipboard'
+    enabled: true
+    action: ->
+      @normalKakouneCommand "%"
+      @key "|", ["option"]
+      @string "pbcopy"
+      @key "enter"
   'kakoune-clipboard-paste':
     spoken: 'kaspark'
     enabled: true
