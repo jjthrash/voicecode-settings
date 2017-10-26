@@ -308,3 +308,32 @@ pack.commands
 #    action: ->
 #      @normalKakouneCommand ""
 
+  'kakoune-split-lines':
+    spoken: "fendy"
+    enabled: true
+    action: ->
+      @prefixNormalKakouneCommand()
+      @key "s", ["option"]
+  'kakoune-flip-selection-direction':
+    spoken: "shalt"
+    enabled: true
+    action: ->
+      @prefixNormalKakouneCommand()
+      @key ";", ["option"]
+  'kakoune-join-lines':
+    spoken: "liggy"
+    enabled: true
+    action: ->
+      @prefixNormalKakouneCommand()
+      @key "j", ["option"]
+  'kakoune-align':
+    spoken: "ziggy"
+    enabled: true
+    action: ->
+      @prefixNormalKakouneCommand()
+      @key "&"
+  'kakoune-refine-selection':
+    spoken: 'electy'
+    enabled: true
+    action: ->
+      @normalKakouneCommand "s"
