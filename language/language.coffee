@@ -33,6 +33,8 @@ Package.command 'first-character-from-each-word-capitalized',
   spoken: 'yellsnitch'
   grammarType: "textCapture"
   enabled: true
+  autoSpacing: "normal normal"
+  multiPhraseAutoSpacing: "normal normal"
   action: (input) ->
     if input
       @string Transforms.upperSlam(Transforms.firstLetters(input))
