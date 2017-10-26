@@ -143,8 +143,11 @@ pack.implement
         temp = last
         last = first
         first = temp
+      @prefixNormalKakouneCommand()
       @string "" + first + "g"
+      @prefixNormalKakouneCommand()
       @string "" + last + "G"
+      @prefixNormalKakouneCommand()
       @key "x", ["option"]
   'delete:lines': ({first, last} = {}) ->
     if last?
