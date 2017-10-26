@@ -41,3 +41,12 @@ Package.commands
     action: ->
       @key prefixCharacter, ["control"]
       @key "z"
+  'go-to-previous-pane':
+    spoken: "mux gopreev"
+    description: "go to the previously selected pane"
+    enabled: true
+    autoSpacing: 'never never'
+    multiPhraseAutoSpacing: 'never never'
+    action: ->
+      @key prefixCharacter, ["control"]
+      @key ";"
