@@ -18,6 +18,9 @@ Settings.vocabulary =
     "thingiverse",
     "tmux",
     "accessor",
+    "tarsnap",
+    "audulus",
+    "modals",
   ]
 
 Settings.vocabulary =
@@ -45,6 +48,7 @@ Settings.vocabulary =
     "speicher": "spiker"
     "quay way": "queue"
     "kwai way": "queue"
+    "long q": "queue"
     "engine x": "nginx"
     "kashi": "cache"
     "coupe": "k"
@@ -63,6 +67,8 @@ Settings.vocabulary =
     "tesuque": "to s"
     "pre-rendering": "prerendering"
     "segway": "segue"
+    "time stamp": "timestamp"
+    "time stamps": "timestamps"
 
 Settings.insert =
   abbreviations:
@@ -89,6 +95,9 @@ Settings.insert =
     "move": "mov"
     "jump": "jmp"
     "miniature": "mini"
+    "synthesizer": "synth"
+    "ceiling": "ceil"
+    "monitor": "monit"
 
 
 Settings.vocabulary =
