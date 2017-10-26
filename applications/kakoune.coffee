@@ -332,6 +332,12 @@ pack.commands
     action: ->
       @prefixNormalKakouneCommand()
       @key "&"
+  'kakoune-reverse-find':
+    spoken: 'remarko'
+    enabled: true
+    action: ->
+      @prefixNormalKakouneCommand()
+      @key "/", ["option"]
   'kakoune-refine-selection':
     spoken: 'electy'
     enabled: true
